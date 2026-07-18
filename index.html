@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0909" />
+  <meta name="description" content="AZ Moda — vestidos elegantes para novias, quince años y celebraciones inolvidables." />
+  <meta property="og:title" content="AZ Moda — Alta costura contemporánea" />
+  <meta property="og:description" content="Colecciones de novias y quince años. Descubre el universo visual de AZ Moda." />
+  <meta property="og:image" content="assets/quince-lavanda.webp" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <title>AZ Moda — El arte de vestir</title>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+  <div class="intro" aria-hidden="true"><span>AZ</span><i></i></div>
+  <header class="site-header">
+    <a class="logo" href="#inicio" aria-label="AZ Moda, inicio">AZ <span>Moda</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
+    <nav id="nav" aria-label="Navegación principal">
+      <a href="#esencia">Esencia</a><a href="#coleccion">Colección</a><a href="#galeria">Galería</a><a href="#vision">Visión</a><a href="#cita">Cita</a>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-media"><img src="assets/novia-encaje.webp" alt="Vestido de novia blanco con encaje, mangas largas y falda amplia" width="376" height="329" fetchpriority="high" /></div>
+      <div class="hero-cameo hero-cameo--one"><img src="assets/quince-lavanda.webp" alt="Vestido lavanda de quince años con mariposas bordadas" width="384" height="345" /></div>
+      <div class="hero-cameo hero-cameo--two"><img src="assets/ocasion-esmeralda.webp" alt="Vestido verde esmeralda de una manga" width="378" height="336" /></div>
+      <div class="hero-glow"></div>
+      <p class="eyebrow">Novias · Quince años · Ceremonia · Ocasiones</p>
+      <h1 id="hero-title"><span>Tu momento,</span><em>hecho vestido.</em></h1>
+      <p class="hero-copy">Siluetas que celebran quién eres y la historia que estás por vivir.</p>
+      <a class="explore" href="#coleccion"><span>Descubrir colecciones</span><i aria-hidden="true">↓</i></a>
+      <span class="hero-index" aria-hidden="true">AZ / Moda</span>
+    </section>
+
+    <section class="essence section" id="esencia" aria-labelledby="essence-title">
+      <p class="kicker reveal">01 / Esencia</p>
+      <div class="essence-grid">
+        <h2 class="display reveal" id="essence-title">Elegancia para cada <em>historia.</em></h2>
+        <div class="body-copy reveal"><p>AZ Moda reúne vestidos para novias, quince años y ocasiones especiales bajo una misma mirada: proporción, textura y movimiento en equilibrio.</p><p>De los blancos luminosos a los tonos profundos, cada silueta propone una forma distinta de habitar un momento importante.</p></div>
+      </div>
+      <div class="material-notes reveal" aria-label="Líneas de diseño"><span>Novias</span><span>Quince años</span><span>Ocasiones especiales</span></div>
+    </section>
+
+    <section class="collection section" id="coleccion" aria-labelledby="collection-title">
+      <header class="section-heading reveal"><p class="kicker">02 / Colecciones</p><h2 class="display" id="collection-title">Vestidos para<br><em>ser recordada.</em></h2><p>Explora cada diseño y amplía sus detalles.</p></header>
+      <div class="filters reveal" role="group" aria-label="Filtrar colección"><button class="is-active" type="button" data-filter="all">Todos</button><button type="button" data-filter="novias">Novias</button><button type="button" data-filter="quince">Quince años</button><button type="button" data-filter="ceremonia">Ceremonia</button><button type="button" data-filter="ocasion">Ocasión</button></div>
+      <div class="gallery">
+        <button class="art-card reveal" data-index="0" data-category="novias" aria-label="Ampliar vestido Encaje Real"><span class="art-img"><img src="assets/novia-encaje.webp" alt="Vestido de novia con encaje y mangas largas" width="376" height="329" loading="lazy" /></span><span class="art-meta"><b>01</b><span><strong>Encaje Real</strong><small>Novias · nombre provisional</small></span><i>↗</i></span></button>
+        <button class="art-card art-card--offset reveal" data-index="1" data-category="novias" aria-label="Ampliar vestido Satin"><span class="art-img"><img src="assets/novia-satin.webp" alt="Vestido de novia satinado con escote abierto" width="384" height="329" loading="lazy" /></span><span class="art-meta"><b>02</b><span><strong>Satin</strong><small>Novias · nombre provisional</small></span><i>↗</i></span></button>
+        <button class="art-card reveal" data-index="2" data-category="novias" aria-label="Ampliar vestido Sirena"><span class="art-img"><img src="assets/novia-sirena.webp" alt="Vestido de novia corte sirena con encaje" width="378" height="329" loading="lazy" /></span><span class="art-meta"><b>03</b><span><strong>Sirena</strong><small>Novias · nombre provisional</small></span><i>↗</i></span></button>
+        <button class="art-card art-card--offset reveal" data-index="3" data-category="novias" aria-label="Ampliar vestido Nube"><span class="art-img"><img src="assets/novia-romantica.webp" alt="Vestido de novia con mangas de tul y falda amplia" width="379" height="329" loading="lazy" /></span><span class="art-meta"><b>04</b><span><strong>Nube</strong><small>Novias · nombre provisional</small></span><i>↗</i></span></button>
+        <button class="art-card reveal" data-index="4" data-category="quince" aria-label="Ampliar vestido Rosa Imperial"><span class="art-img"><img src="assets/quince-rosa.webp" alt="Vestido rosa de quince años con aplicaciones florales" width="376" height="345" loading="lazy" /></span><span class="art-meta"><b>05</b><span><strong>Rosa Imperial</strong><small>Quince años · nombre provisional</small></span><i>↗</i></span></button>
+        <button class="art-card art-card--offset reveal" data-index="5" data-category="quince" aria-label="Ampliar vestido Violeta"><span class="art-img"><img src="assets/quince-lavanda.webp" alt="Vestido lavanda de quince años con mariposas" width="384" height="345" loading="lazy" /></span><span class="art-meta"><b>06</b><span><strong>Violeta</strong><small>Quince años · nombre provisional</small></span><i>↗</i></span></button>
+        <button class="art-card reveal" data-index="6" data-category="quince" aria-label="Ampliar vestido Azul Real"><span class="art-img"><img src="assets/quince-azul.webp" alt="Vestido azul profundo de quince años" width="378" height="345" loading="lazy" /></span><span class="art-meta"><b>07</b><span><strong>Azul Real</strong><small>Quince años · nombre provisional</small></span><i>↗</i></span></button>
+        <button class="art-card reveal" data-index="7" data-category="ceremonia" aria-label="Ampliar vestido Ceremonia"><span class="art-img"><img src="assets/ceremonia-clasica.webp" alt="Vestido blanco infantil de ceremonia" width="379" height="345" loading="lazy" /></span><span class="art-meta"><b>08</b><span><strong>Clásica</strong><small>Ceremonia · nombre provisional</small></span><i>↗</i></span></button>
+        <button class="art-card art-card--offset reveal" data-index="8" data-category="ceremonia" aria-label="Ampliar traje de ceremonia"><span class="art-img"><img src="assets/ceremonia-nino.webp" alt="Traje blanco infantil de ceremonia" width="376" height="336" loading="lazy" /></span><span class="art-meta"><b>09</b><span><strong>Caballero</strong><small>Ceremonia · nombre provisional</small></span><i>↗</i></span></button>
+        <button class="art-card reveal" data-index="9" data-category="ceremonia" aria-label="Ampliar vestido Celebración"><span class="art-img"><img src="assets/ceremonia-nina.webp" alt="Vestido blanco infantil con falda de volantes" width="384" height="336" loading="lazy" /></span><span class="art-meta"><b>10</b><span><strong>Celebración</strong><small>Ceremonia · nombre provisional</small></span><i>↗</i></span></button>
+        <button class="art-card art-card--offset reveal" data-index="10" data-category="ocasion" aria-label="Ampliar vestido Esmeralda"><span class="art-img"><img src="assets/ocasion-esmeralda.webp" alt="Vestido verde esmeralda de una manga" width="378" height="336" loading="lazy" /></span><span class="art-meta"><b>11</b><span><strong>Esmeralda</strong><small>Ocasión · nombre provisional</small></span><i>↗</i></span></button>
+        <button class="art-card reveal" data-index="11" data-category="ocasion" aria-label="Ampliar vestido Rosa Satin"><span class="art-img"><img src="assets/ocasion-rosa.webp" alt="Vestido corto rosa satinado" width="379" height="336" loading="lazy" /></span><span class="art-meta"><b>12</b><span><strong>Rosa Satin</strong><small>Ocasión · nombre provisional</small></span><i>↗</i></span></button>
+      </div>
+    </section>
+
+    <section class="vision section" id="vision" aria-labelledby="vision-title">
+      <div class="vision-visual reveal"><img src="assets/quince-rosa.webp" alt="Vestido rosa de quince años con volumen y aplicaciones florales" width="376" height="345" loading="lazy" /></div>
+      <div class="vision-copy reveal"><p class="kicker">03 / El arte de celebrar</p><h2 class="display" id="vision-title">Cada ocasión tiene <em>su propia luz.</em></h2><p>Una novia y una quinceañera viven historias diferentes. AZ Moda las reúne desde el diseño: siluetas expresivas, texturas delicadas y una presencia que acompaña sin disfrazar.</p><blockquote>“El vestido no crea el momento. Le da una forma que permanece.”</blockquote><span class="provisional">Texto editorial provisional</span></div>
+    </section>
+
+    <section class="process section" aria-labelledby="process-title">
+      <div class="process-heading reveal"><p class="kicker">04 / Anatomía de una pieza</p><h2 class="display" id="process-title">Del trazo<br><em>al volumen.</em></h2></div>
+      <div class="process-strip reveal">
+        <article><span>01</span><h3>Línea</h3><p>Un escote abierto enmarca los hombros y ordena la silueta.</p></article>
+        <article><span>02</span><h3>Textura</h3><p>El motivo floral recorre el cuerpo y continúa sobre la falda.</p></article>
+        <article><span>03</span><h3>Contraste</h3><p>La cinta coral concentra la mirada y define la cintura.</p></article>
+      </div>
+      <div class="detail-window reveal"><img src="assets/novia-sirena.webp" alt="Detalle artístico de encaje en vestido de novia corte sirena" width="378" height="329" loading="lazy" /></div>
+    </section>
+
+    <section class="photo-gallery section" id="galeria" aria-labelledby="gallery-title">
+      <header class="photo-gallery-heading reveal">
+        <div><p class="kicker">05 / Galería de fotos</p><h2 class="display" id="gallery-title">Momentos que<br><em>se vuelven memoria.</em></h2></div>
+        <p>Un archivo visual de vestidos, detalles y creaciones de AZ Moda. Esta galería crecerá con cada nueva historia.</p>
+      </header>
+      <div class="photo-mosaic">
+        <button class="photo-tile photo-tile--tall reveal" type="button" data-photo-index="0" aria-label="Ampliar vestido Encaje Real"><img src="assets/novia-encaje.webp" alt="Vestido de novia Encaje Real" width="376" height="329" loading="lazy" /><span>Novias / Encaje Real</span></button>
+        <button class="photo-tile reveal" type="button" data-photo-index="4" aria-label="Ampliar vestido Rosa Imperial"><img src="assets/quince-rosa.webp" alt="Vestido de quince años Rosa Imperial" width="376" height="345" loading="lazy" /><span>Quince años / Rosa Imperial</span></button>
+        <button class="photo-tile reveal" type="button" data-photo-index="10" aria-label="Ampliar vestido Esmeralda"><img src="assets/ocasion-esmeralda.webp" alt="Vestido de ocasión Esmeralda" width="378" height="336" loading="lazy" /><span>Ocasión / Esmeralda</span></button>
+        <button class="photo-tile photo-tile--wide reveal" type="button" data-photo-index="6" aria-label="Ampliar vestido Azul Real"><img src="assets/quince-azul.webp" alt="Vestido de quince años Azul Real" width="378" height="345" loading="lazy" /><span>Quince años / Azul Real</span></button>
+        <button class="photo-tile reveal" type="button" data-photo-index="2" aria-label="Ampliar vestido Sirena"><img src="assets/novia-sirena.webp" alt="Vestido de novia Sirena" width="378" height="329" loading="lazy" /><span>Novias / Sirena</span></button>
+        <button class="photo-tile reveal" type="button" data-photo-index="9" aria-label="Ampliar vestido Celebración"><img src="assets/ceremonia-nina.webp" alt="Vestido infantil de ceremonia" width="384" height="336" loading="lazy" /><span>Ceremonia / Celebración</span></button>
+      </div>
+      <p class="gallery-note reveal">Nuevas fotografías próximamente.</p>
+    </section>
+
+    <section class="contact section" id="cita" aria-labelledby="contact-title">
+      <p class="kicker reveal">Consulta privada</p><h2 class="display reveal" id="contact-title">Conoce la pieza<br><em>en detalle.</em></h2><p class="reveal">Solicita información o reserva una conversación con AZ Moda.</p>
+      <a class="cta reveal" data-contact href="https://wa.me/573046385554?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20vestidos%20de%20AZ%20Moda." target="_blank" rel="noopener noreferrer" aria-label="Solicitar información por WhatsApp"><span>Solicitar información</span><i>↗</i></a>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#inicio">AZ <span>Moda</span></a><p>Diseño que habita la memoria.</p>
+    <div class="footer-links"><span>Redes <small>— por definir</small></span><span>Ubicación <small>— Manizales</small></span><a href="https://wa.me/573046385554?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20vestidos%20de%20AZ%20Moda." target="_blank" rel="noopener noreferrer">WhatsApp <small>— 304 638 5554</small></a></div>
+    <small>© <span id="year"></span> AZ Moda · Manizales</small>
+  </footer>
+
+  <dialog class="viewer" aria-labelledby="viewer-title">
+    <button class="viewer-close" type="button" aria-label="Cerrar visor">Cerrar ×</button>
+    <div class="viewer-media"><img src="" alt="" /></div>
+    <div class="viewer-info"><span class="viewer-count"></span><p class="kicker">Archivo AZ</p><h2 id="viewer-title"></h2><p class="viewer-description"></p><ul class="viewer-details"></ul><button class="viewer-prev" type="button" aria-label="Vista anterior">← Anterior</button><button class="viewer-next" type="button" aria-label="Vista siguiente">Siguiente →</button></div>
+  </dialog>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
