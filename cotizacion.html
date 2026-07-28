@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Solicita una cotización para una prenda confeccionada sobre medida por AZ MODA.">
+  <title>Cotización — AZ MODA</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body data-page="cotizacion">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header solid" data-header>
+    <a class="brand" href="index.html" aria-label="AZ MODA, inicio">AZ <span>MODA</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span><span class="sr-only">Abrir menú</span></button>
+    <nav id="main-nav" class="main-nav" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a><a href="colecciones.html">Diseños</a><a href="galeria.html">Galería</a><a href="cotizacion.html" aria-current="page">Cotización</a><a href="resenas.html">Opiniones</a>
+    </nav>
+  </header>
+  <main id="contenido" class="inner-main">
+    <section class="page-lead quote-lead">
+      <p class="eyebrow">Una solicitud clara nos ayuda a orientarte mejor</p>
+      <h1>Solicita tu cotización</h1>
+      <p>Cuéntanos qué necesitas. Revisaremos tu idea como un proyecto de confección sobre medida; este formulario no realiza compras ni cobros.</p>
+    </section>
+    <section class="quote-layout section-pad">
+      <aside class="quote-aside">
+        <p class="eyebrow">Antes de enviar</p>
+        <h2>Tu prenda empieza con los detalles</h2>
+        <p>Comparte la fecha, la ocasión y las preferencias que ya tengas. Si todavía no has definido todo, también podemos partir de una idea.</p>
+        <ul>
+          <li>Diseño adaptado a tus medidas.</li>
+          <li>Opciones revisadas según la confección.</li>
+          <li>Atención presencial o virtual, según el proyecto.</li>
+        </ul>
+      </aside>
+      <form id="quote-form" class="quote-form" novalidate>
+        <input type="hidden" id="design-reference" name="designReference">
+        <div class="selected-design" data-selected-design hidden></div>
+        <div class="form-grid">
+          <label>Nombre completo<input name="name" autocomplete="name" required></label>
+          <label>Número de WhatsApp<input name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required></label>
+          <label>Ciudad<input name="city" autocomplete="address-level2" required></label>
+          <label>Tipo de prenda<select name="garment" required><option value="">Selecciona una opción</option><option>Vestido de novia</option><option>Vestido de quince años</option><option>Vestido de primera comunión</option><option>Vestido infantil</option><option>Vestido de gala</option><option>Vestido para evento especial</option><option>Otra prenda sobre medida</option></select></label>
+          <label>Tipo de evento<input name="eventType" placeholder="Ej. boda, graduación, ceremonia"></label>
+          <label>Fecha del evento<input name="eventDate" type="date"></label>
+          <label>Talla aproximada<input name="size" placeholder="Si la conoces"></label>
+          <label>Color preferido<input name="color" placeholder="Color o gama de colores"></label>
+          <label>Presupuesto aproximado<input name="budget" inputmode="numeric" placeholder="Opcional; no genera cobros"></label>
+          <label>Modalidad<select name="mode" required><option value="">Selecciona una opción</option><option>Presencial</option><option>Virtual</option><option>Quiero recibir orientación</option></select></label>
+          <label class="full">Descripción de la idea<textarea name="description" rows="5" required placeholder="Cuéntanos sobre el estilo, la ocasión y los detalles que imaginas."></textarea></label>
+          <label class="full file-field">Imagen de referencia <span class="field-note">Podrás adjuntarla manualmente en WhatsApp después de abrir la conversación.</span><input name="referenceImage" type="file" accept="image/jpeg,image/png,image/webp"></label>
+        </div>
+        <label id="datos" class="consent"><input name="consent" type="checkbox" required><span>Autorizo el uso de estos datos únicamente para atender mi solicitud de cotización y contactarme por WhatsApp.</span></label>
+        <p class="form-status" id="quote-status" role="status" aria-live="polite"></p>
+        <button class="button button-dark" type="submit">Enviar solicitud por WhatsApp</button>
+      </form>
+    </section>
+  </main>
+  <footer class="site-footer" data-footer></footer>
+  <script src="site-data.js"></script>
+  <script src="main.js"></script>
+  <script src="enhancements.js"></script>
+</body>
+</html>
