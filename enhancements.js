@@ -60,7 +60,41 @@
     images:["assets/cliente-celeste-corto-mirador.webp","assets/cliente-celeste-corto-ciudad.webp","assets/cliente-celeste-corto-atelier.webp"]
   }];
   const workshop = document.querySelector("[data-workshop-list]");
-  if (workshop) workshop.innerHTML = works.map(work => `<article class="workshop-card reveal"><div class="workshop-images" tabindex="0" aria-label="Fotografías de ${work.name}">${work.images.map((src,i)=>`<img src="${src}" alt="${work.name}, vista ${i+1}" width="768" height="1024" loading="lazy">`).join("")}</div><div class="workshop-copy"><div class="design-tags"><span>Trabajo real</span><span>Sobre medida</span></div><small>${work.code} · ${work.category}</small><h3>${work.name}</h3><p>${work.description}</p><dl><dt>Detalles personalizados</dt><dd>${work.details}</dd></dl><a class="text-link" href="${wa(`Hola, vi el trabajo ${work.name} ${work.code} en la página de AZ MODA y quiero cotizar una prenda similar confeccionada sobre medida.`)}" target="_blank" rel="noopener">Quiero algo similar <span>↗</span></a></div></article>`).join("");
+  if (workshop) {
+    workshop.innerHTML = works.map(work => `<article class="workshop-card reveal"><div class="workshop-gallery" data-workshop-gallery><div class="workshop-images" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Fotografías de ${work.name}">${work.images.map((src,i)=>`<figure class="workshop-slide" data-slide="${i}"><img src="${src}" alt="${work.name}, vista ${i+1}" width="768" height="1024" loading="lazy"></figure>`).join("")}</div><div class="workshop-controls"><button type="button" data-gallery-prev aria-label="Fotografía anterior">←</button><span data-gallery-count>01 / ${String(work.images.length).padStart(2,"0")}</span><button type="button" data-gallery-next aria-label="Fotografía siguiente">→</button></div></div><div class="workshop-copy"><div class="design-tags"><span>Trabajo real</span><span>Sobre medida</span></div><small>${work.code} · ${work.category}</small><h3>${work.name}</h3><p>${work.description}</p><dl><dt>Detalles personalizados</dt><dd>${work.details}</dd></dl><a class="text-link" href="${wa(`Hola, vi el trabajo ${work.name} ${work.code} en la página de AZ MODA y quiero cotizar una prenda similar confeccionada sobre medida.`)}" target="_blank" rel="noopener">Quiero algo similar <span>↗</span></a></div></article>`).join("");
+
+    workshop.querySelectorAll("[data-workshop-gallery]").forEach(gallery => {
+      const slides = [...gallery.querySelectorAll(".workshop-slide")];
+      const stage = gallery.querySelector(".workshop-images");
+      const count = gallery.querySelector("[data-gallery-count]");
+      let active = 0;
+      let touchStart = 0;
+      const render = () => {
+        slides.forEach((slide, index) => {
+          const offset = (index - active + slides.length) % slides.length;
+          slide.dataset.position = offset === 0 ? "active" : offset === 1 ? "next" : offset === slides.length - 1 ? "previous" : "hidden";
+          slide.setAttribute("aria-hidden", String(offset !== 0));
+        });
+        count.textContent = `${String(active + 1).padStart(2,"0")} / ${String(slides.length).padStart(2,"0")}`;
+      };
+      const move = direction => {
+        active = (active + direction + slides.length) % slides.length;
+        render();
+      };
+      gallery.querySelector("[data-gallery-prev]").addEventListener("click", () => move(-1));
+      gallery.querySelector("[data-gallery-next]").addEventListener("click", () => move(1));
+      stage.addEventListener("keydown", event => {
+        if (event.key === "ArrowLeft") move(-1);
+        if (event.key === "ArrowRight") move(1);
+      });
+      stage.addEventListener("touchstart", event => { touchStart = event.changedTouches[0].clientX; }, {passive:true});
+      stage.addEventListener("touchend", event => {
+        const distance = event.changedTouches[0].clientX - touchStart;
+        if (Math.abs(distance) > 45) move(distance < 0 ? 1 : -1);
+      }, {passive:true});
+      render();
+    });
+  }
 
   const form = document.querySelector("#quote-form");
   if (form) {

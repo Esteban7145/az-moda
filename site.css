@@ -114,3 +114,29 @@ body[data-page="cotizacion"] .inner-main{
   color:#211a18;
 }
 body[data-page="cotizacion"] .quote-form{background:#f6f0e9}
+
+/* Galería 3D compacta para trabajos reales */
+.workshop-gallery{width:min(100%,640px);margin-inline:auto;perspective:1400px}
+.workshop-images{position:relative;display:block;overflow:visible;width:min(78%,430px);aspect-ratio:3/4;margin:0 auto;outline:none;touch-action:pan-y}
+.workshop-images:focus-visible{outline:2px solid #725b4d;outline-offset:12px}
+.workshop-slide{position:absolute;inset:0;margin:0;overflow:hidden;border-radius:2px;background:#a99485;box-shadow:0 28px 60px rgba(35,25,20,.22);transition:transform .65s cubic-bezier(.2,.75,.2,1),opacity .45s ease,filter .45s ease;transform-origin:center}
+.workshop-slide img{display:block;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
+.workshop-slide[data-position="active"]{z-index:3;opacity:1;filter:none;transform:translate3d(0,0,0) rotateY(0) scale(1)}
+.workshop-slide[data-position="next"]{z-index:2;opacity:.62;filter:saturate(.75);transform:translate3d(17%,2%,-90px) rotateY(-12deg) scale(.92)}
+.workshop-slide[data-position="previous"]{z-index:1;opacity:.4;filter:saturate(.65);transform:translate3d(-17%,3%,-130px) rotateY(12deg) scale(.88)}
+.workshop-slide[data-position="hidden"]{z-index:0;opacity:0;pointer-events:none;transform:translate3d(0,4%,-180px) scale(.82)}
+.workshop-controls{display:flex;align-items:center;justify-content:center;gap:1.25rem;margin-top:1.5rem;color:#302722}
+.workshop-controls button{display:grid;place-items:center;width:44px;height:44px;border:1px solid rgba(48,39,34,.42);border-radius:50%;background:rgba(246,240,233,.3);color:inherit;font-size:1.15rem;cursor:pointer;transition:background .25s ease,color .25s ease,transform .25s ease}
+.workshop-controls button:hover,.workshop-controls button:focus-visible{background:#302722;color:#f6efe7;transform:translateY(-2px)}
+.workshop-controls span{min-width:64px;text-align:center;font-size:.66rem;letter-spacing:.16em}
+
+@media (max-width:700px){
+  .workshop-gallery{width:100%}
+  .workshop-images{width:min(76vw,330px)}
+  .workshop-slide[data-position="next"]{transform:translate3d(11%,2%,-90px) rotateY(-10deg) scale(.93)}
+  .workshop-slide[data-position="previous"]{transform:translate3d(-11%,3%,-120px) rotateY(10deg) scale(.9)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .workshop-slide,.workshop-controls button{transition:none}
+}
