@@ -131,7 +131,7 @@
       piece.code = `AZ-${String(i+1).padStart(3,"0")}`;
       piece.categoryKey = typeof categories !== "undefined" ? categories[i] : "ocasion";
       piece.categoryLabel = labels[piece.categoryKey] || "Diseño personalizado";
-      piece.designType = /cliente-|esencial-/.test(piece.src) ? "Trabajo real" : "Diseño de referencia";
+      piece.designType = /cliente-|esencial-|trabajo-/.test(piece.src) ? "Trabajo real" : "Diseño de referencia";
     });
     const catalog = document.querySelector("#catalog");
     if (catalog) {
