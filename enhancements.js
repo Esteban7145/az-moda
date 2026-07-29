@@ -58,6 +58,16 @@
     description:"Vestido corto de líneas suaves creado para acompañar distintos momentos con comodidad.",
     details:"Manga corta, cintura definida y falda con vuelo.",
     images:["assets/cliente-celeste-corto-mirador.webp","assets/cliente-celeste-corto-ciudad.webp","assets/cliente-celeste-corto-atelier.webp"]
+  },{
+    code:"AZ-REAL-03",name:"Verde salvia",category:"Evento especial",
+    description:"Vestido de línea fluida confeccionado sobre medida para una celebración al aire libre.",
+    details:"Escote cuadrado, manga amplia, cinturón delicado y falda con volante.",
+    images:["assets/trabajo-verde-salvia-cliente.webp","assets/trabajo-verde-salvia-atelier.webp","assets/trabajo-verde-salvia-exterior.webp"]
+  },{
+    code:"AZ-REAL-04",name:"Azul petróleo",category:"Evento especial",
+    description:"Diseño largo de silueta limpia creado para realzar el movimiento y la elegancia de su ocasión.",
+    details:"Cuello redondo, línea ajustada y mangas largas con amplitud en el puño.",
+    images:["assets/trabajo-azul-petroleo-cliente-1.webp","assets/trabajo-azul-petroleo-atelier.webp","assets/trabajo-azul-petroleo-cliente-2.webp"]
   }];
   const workshop = document.querySelector("[data-workshop-list]");
   if (workshop) {
