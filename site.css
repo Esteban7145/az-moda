@@ -75,3 +75,42 @@ img[src*="nuevo-duo"],img[src*="nuevo-trio"],img[src*="nuevo-collage"]{object-fi
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 .review-body time{display:block;margin-top:.3rem;font-size:.68rem;color:#766f69}.review-response{margin-top:1.25rem;padding:1rem;border-left:2px solid var(--coral);background:rgba(255,255,255,.36)}.review-response>strong{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}.review-response p{margin:.45rem 0 0!important;line-height:1.55}.reviews-empty.compact{max-width:620px;margin:1.5rem auto;text-align:center;padding:1rem!important;background:none!important;border:0!important}
+
+/* Paleta editorial de alto contraste */
+body[data-page="inicio"] .tailored{
+  background:#241c19;
+  color:#f6efe7;
+}
+body[data-page="inicio"] .tailored .eyebrow{color:#dc8c80}
+body[data-page="inicio"] .tailored h2,
+body[data-page="inicio"] .tailored .tailored-points span{color:#f6efe7}
+body[data-page="inicio"] .tailored .section-intro>p:last-child{color:#cfc2b8}
+body[data-page="inicio"] .tailored .tailored-points{border-color:#675a53}
+body[data-page="inicio"] .tailored .tailored-points span{border-color:#675a53}
+
+body[data-page="inicio"] .category-preview{
+  background:#d8cdc2;
+  color:#241c19;
+}
+body[data-page="inicio"] .category-preview .section-heading>p:last-child{color:#554b45}
+
+body[data-page="inicio"] .workshop{
+  background:#c4b4a7;
+  color:#211a18;
+}
+body[data-page="inicio"] .workshop .section-heading>p:last-child,
+body[data-page="inicio"] .workshop .workshop-copy p{color:#4f443e}
+body[data-page="inicio"] .workshop .workshop-copy dl{border-color:#8e7c70}
+
+body[data-page="inicio"] .faq{
+  background:#eee5db;
+  color:#211a18;
+}
+body[data-page="inicio"] .faq .faq-list,
+body[data-page="inicio"] .faq .faq-item{border-color:#baaa9e}
+
+body[data-page="cotizacion"] .inner-main{
+  background:#d8cdc2;
+  color:#211a18;
+}
+body[data-page="cotizacion"] .quote-form{background:#f6f0e9}
