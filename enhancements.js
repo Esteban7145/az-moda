@@ -5,13 +5,60 @@
   const message = key => (az.messages || {})[key] || (az.messages || {}).general || "Hola, quiero información sobre una prenda sobre medida.";
   const labels = {novias:"Novias",quince:"Quince años",ceremonia:"Primera comunión",ocasion:"Gala y eventos",infantiles:"Infantiles",casual:"Eventos y uso diario",esencial:"Línea esencial"};
 
-  const menuButton = document.querySelector(".menu-toggle");
-  const menu = document.querySelector(".main-nav");
-  if (menuButton && menu) menuButton.addEventListener("click", () => {
-    const open = menuButton.getAttribute("aria-expanded") === "true";
-    menuButton.setAttribute("aria-expanded", String(!open));
-    menu.classList.toggle("is-open", !open);
+  // Retira los adornos decorativos heredados sin alterar el contenido.
+  document.querySelectorAll(".ceremony-objects").forEach(node => node.remove());
+
+  // Actualiza los textos heredados de la antigua presentación de la galería.
+  if (document.body.dataset.page === "galeria") {
+    const description = document.querySelector('meta[name="description"]');
+    const gallery = document.querySelector(".gallery-shell");
+    if (description) description.content = "Galería de vestidos y prendas confeccionadas por AZ Moda.";
+    if (gallery) gallery.setAttribute("aria-label", "Galería de prendas");
+  }
+
+  document.querySelectorAll('.viewer-media img[alt=""]').forEach(image => {
+    image.alt = "Vista ampliada del diseño seleccionado";
   });
+
+  const menuButton = document.querySelector(".menu-toggle,.nav-toggle");
+  const menu = document.querySelector(".main-nav,#nav");
+  if (menuButton && menu) {
+    const syncMenu = () => {
+      const open = menuButton.getAttribute("aria-expanded") === "true";
+      document.body.classList.toggle("menu-open", open);
+      menuButton.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    };
+    // Un único controlador evita que los dos encabezados históricos del sitio
+    // cambien el estado dos veces en el mismo toque.
+    menuButton.onclick = null;
+    menuButton.addEventListener("click", event => {
+      event.stopImmediatePropagation();
+      const open = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!open));
+      menu.classList.toggle("is-open", !open);
+      syncMenu();
+    }, true);
+    menu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      menu.classList.remove("is-open");
+      menuButton.setAttribute("aria-expanded", "false");
+      syncMenu();
+    }));
+    document.addEventListener("keydown", event => {
+      if (event.key !== "Escape" || menuButton.getAttribute("aria-expanded") !== "true") return;
+      menu.classList.remove("is-open");
+      menuButton.setAttribute("aria-expanded", "false");
+      syncMenu();
+      menuButton.focus();
+    });
+    syncMenu();
+  }
+
+  const header = document.querySelector(".site-header,.topbar");
+  if (header) {
+    const updateHeader = () => header.classList.toggle("is-scrolled", scrollY > 24);
+    addEventListener("scroll", updateHeader, {passive:true});
+    updateHeader();
+  }
 
   document.querySelectorAll("[data-wa-context]").forEach(link => {
     link.href = wa(message(link.dataset.waContext));
@@ -21,6 +68,12 @@
 
   const requested = new URLSearchParams(location.search).get("categoria");
   const legacyNav = document.querySelector("#nav");
+  if (legacyNav && !legacyNav.querySelector('[href="tienda.html"]')) {
+    const storeLink = document.createElement("a");
+    storeLink.href = "tienda.html";
+    storeLink.textContent = "Tienda";
+    legacyNav.insertBefore(storeLink, legacyNav.querySelector('.nav-contact'));
+  }
   if (legacyNav && !legacyNav.querySelector('[href="cotizacion.html"]')) {
     const quoteLink = document.createElement("a");
     quoteLink.href = "cotizacion.html";
@@ -42,8 +95,32 @@
   const footer = document.querySelector("[data-footer]") || document.querySelector("footer");
   if (footer) {
     footer.className = "site-footer";
-    footer.innerHTML = `<div class="footer-brand"><a class="brand" href="index.html">AZ <span>MODA</span></a><p>Diseño y confección de prendas sobre medida para momentos que merecen sentirse propios.</p></div><div><h2>Visítanos</h2><p>${contact.city || "Manizales, Colombia"}<br>${contact.appointment || "Atención con cita previa"}</p><a href="${wa(message("general"))}" target="_blank" rel="noopener">WhatsApp · ${contact.displayPhone || "304 638 5554"}</a></div><div><h2>Explorar</h2><a href="colecciones.html">Diseños</a><a href="cotizacion.html">Cotización</a><a href="resenas.html">Opiniones</a><a href="index.html#preguntas">Preguntas frecuentes</a><a href="cotizacion.html#datos">Tratamiento de datos</a></div><div><h2>Redes</h2><a href="${contact.instagram}" target="_blank" rel="noopener">Instagram ↗</a><a href="${contact.facebook}" target="_blank" rel="noopener">Facebook ↗</a></div><small>© ${new Date().getFullYear()} AZ MODA</small>`;
+    footer.innerHTML = `<div class="footer-brand"><a class="brand" href="index.html">AZ <span>MODA</span></a><p>Diseño, confección sobre medida y prendas seleccionadas para momentos que merecen sentirse propios.</p></div><div><h2>Visítanos</h2><p>${contact.city || "Manizales, Colombia"}<br>${contact.appointment || "Atención con cita previa"}</p><a href="${wa(message("general"))}" target="_blank" rel="noopener">WhatsApp · ${contact.displayPhone || "304 638 5554"}</a></div><div><h2>Explorar</h2><a href="colecciones.html">Diseños</a><a href="tienda.html">Tienda online</a><a href="cotizacion.html">Cotización</a><a href="resenas.html">Opiniones</a><a href="index.html#preguntas">Preguntas frecuentes</a><a href="cotizacion.html#datos">Tratamiento de datos</a></div><div><h2>Redes</h2><a href="${contact.instagram}" target="_blank" rel="noopener">Instagram ↗</a><a href="${contact.facebook}" target="_blank" rel="noopener">Facebook ↗</a></div><small>© ${new Date().getFullYear()} AZ MODA</small>`;
   }
+
+  // Identidad oficial: dorado en los encabezados y blanco en el pie oscuro.
+  // El texto original permanece como respaldo accesible si la imagen no carga.
+  document.querySelectorAll(".brand").forEach(link => {
+    if (link.querySelector(".brand-logo")) return;
+    const fallback = document.createElement("span");
+    fallback.className = "brand-fallback";
+    fallback.innerHTML = link.innerHTML;
+
+    const image = document.createElement("img");
+    image.className = "brand-logo";
+    image.src = link.closest("footer")
+      ? "assets/brand/az-moda-logo-light.png"
+      : "assets/brand/az-moda-logo-gold.png";
+    image.alt = "";
+    image.width = 664;
+    image.height = 720;
+    image.decoding = "async";
+    if (!link.closest("footer")) image.fetchPriority = "high";
+    image.addEventListener("error", () => link.classList.add("logo-fallback"), {once:true});
+
+    link.setAttribute("aria-label", "AZ MODA · Ir al inicio");
+    link.replaceChildren(image, fallback);
+  });
 
   const faq = document.querySelector("[data-faq-list]");
   if (faq) faq.innerHTML = (az.faqs || []).map((item, i) => `<details class="faq-item reveal"><summary><span>${String(i + 1).padStart(2,"0")}</span>${item.question}<i>+</i></summary><p>${item.answer}</p></details>`).join("");
@@ -126,6 +203,30 @@
     });
   }
 
+  const galleryStage = document.querySelector("#gallery-stage");
+  if (galleryStage) {
+    galleryStage.tabIndex = 0;
+    galleryStage.setAttribute("aria-label", "Galería de diseños. Usa las flechas izquierda y derecha para recorrerla.");
+    galleryStage.addEventListener("keydown", event => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        document.querySelector(".gallery-arrow.prev")?.click();
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        document.querySelector(".gallery-arrow.next")?.click();
+      }
+    });
+    document.querySelector(".gallery-progress")?.setAttribute("aria-live", "polite");
+    document.querySelectorAll("[data-gallery-filter]").forEach(button => {
+      button.setAttribute("aria-pressed", String(button.classList.contains("is-active")));
+      button.addEventListener("click", () => {
+        document.querySelectorAll("[data-gallery-filter]").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+      });
+    });
+    if (requested) document.querySelector(`[data-gallery-filter="${requested}"]`)?.click();
+  }
+
   if (typeof pieces !== "undefined") {
     pieces.forEach((piece,i) => {
       piece.code = `AZ-${String(i+1).padStart(3,"0")}`;
@@ -138,13 +239,18 @@
       catalog.innerHTML = pieces.map((piece,i)=>`<article class="catalog-card design-card" data-index="${i}" data-category="${piece.categoryKey}"><button class="catalog-open" type="button" aria-label="Ver detalles de ${piece.title}"><span class="image"><img src="${piece.src}" alt="${piece.alt}" width="768" height="1024" loading="lazy"></span></button><div class="meta"><div><small>${piece.code} · ${piece.categoryLabel}</small><h2>${piece.title}</h2><div class="design-tags"><span>Sobre medida</span><span>Personalizable</span></div></div><button class="icon-open" type="button" aria-label="Ampliar ${piece.title}">↗</button></div><a class="card-quote" href="cotizacion.html?diseno=${encodeURIComponent(`${piece.title} ${piece.code}`)}">Cotizar un diseño similar</a></article>`).join("");
       catalog.querySelectorAll(".catalog-card").forEach(card => card.querySelectorAll(".catalog-open,.icon-open").forEach(button => button.addEventListener("click",()=>openViewer(Number(card.dataset.index)))));
       const filter = value => {
-        document.querySelectorAll("[data-filter]").forEach(button=>button.classList.toggle("is-active",button.dataset.filter===value));
+        document.querySelectorAll("[data-filter]").forEach(button=>{
+          const active = button.dataset.filter===value;
+          button.classList.toggle("is-active",active);
+          button.setAttribute("aria-pressed",String(active));
+        });
         catalog.querySelectorAll(".catalog-card").forEach(card=>card.hidden=value!=="all"&&card.dataset.category!==value);
         floating.href=wa(message(value));
         document.querySelectorAll(".nav-contact").forEach(link => link.href = wa(message(value)));
       };
       document.querySelectorAll("[data-filter]").forEach(button=>button.addEventListener("click",()=>filter(button.dataset.filter)));
       if (requested && document.querySelector(`[data-filter="${requested}"]`)) filter(requested);
+      else filter("all");
     }
     const dialog = document.querySelector(".viewer");
     if (dialog && !dialog.querySelector(".viewer-custom")) {
